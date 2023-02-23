@@ -1,0 +1,26 @@
+
+import os,json
+
+countries =(os.listdir("Countries"))
+
+f = open("filenames.txt", "w")
+def NewAssocEntry(key,data):
+    return f'"{key}"=>"{data}"'
+
+print(NewAssocEntry("hello","hi"))
+#array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+
+
+array = []
+count = 0
+for country in countries:
+    count+=1
+    newFileName = "c"+ str(abs(hash(country))) + ".png"
+    array.append({newFileName:country})
+    os.rename("Countries/" +country,newFileName)
+
+print(array)
+
+with open("data_file.json", "w") as write_file:
+    json.dump(array, write_file)
+
